@@ -1,0 +1,99 @@
+---
+import Container from './Container.astro';
+import SmallCard from './SmallCard.astro';
+
+import iconFb from '../assets/icon-facebook.svg';
+import iconTw from '../assets/icon-twitter.svg';
+import iconIg from '../assets/icon-instagram.svg';
+import iconYt from '../assets/icon-youtube.svg';
+
+const smallCardsData = [
+  {
+    title: 'Page Views',
+    socialIcon: iconFb,
+    value: '87',
+    socialsDifference: 3
+  },
+  {
+    title: 'Likes',
+    socialIcon: iconFb,
+    value: '52',
+    socialsDifference: -2
+  },
+  {
+    title: 'Likes',
+    socialIcon: iconIg,
+    value: '5462',
+    socialsDifference: 2257
+  },
+  {
+    title: 'Profile Views',
+    socialIcon: iconFb,
+    value: '52k',
+    socialsDifference: 1375
+  },
+  {
+    title: 'Retweets',
+    socialIcon: iconTw,
+    value: '117',
+    socialsDifference: 303
+  },
+  {
+    title: 'Likes',
+    socialIcon: iconTw,
+    value: '507',
+    socialsDifference: 553
+  },
+  {
+    title: 'Likes',
+    socialIcon: iconYt,
+    value: '107',
+    socialsDifference: -19
+  },
+  {
+    title: 'Total Views',
+    socialIcon: iconYt,
+    value: '1407',
+    socialsDifference: -12
+  },
+];
+
+---
+
+<section class="smallCardsList">
+  <Container>
+    <h2 class="smallCardsList__title">Overview - Today</h2>
+    <div class="smallCardsList__list">
+      {smallCardsData.map(card => (
+        <SmallCard 
+          title={card.title} 
+          socialIcon={card.socialIcon}
+          value={card.value} 
+          socialsDifference={card.socialsDifference}
+        />
+    ))}
+    </div>
+  </Container>
+</section>
+
+<style lang="scss">
+  .smallCardsList {
+    padding-bottom: 45px;
+    
+    &__title {
+      margin-bottom: 24px;
+      font-size: var(--fs-header-mob);
+    }
+
+    &__list {
+      display: grid;
+      gap: 16px;
+
+      @media (min-width: 600px) {
+        justify-content: center;
+        grid-template-columns: repeat(auto-fit, 255px);
+        gap: 30px;
+      }
+    }
+  }
+</style>

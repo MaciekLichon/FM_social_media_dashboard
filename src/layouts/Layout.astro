@@ -1,0 +1,124 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description">
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global lang="scss">
+	:root {
+		--ff-regular: 'Inter', sans-serif;
+		--fw-regular: 400;
+		--fw-bold: 700;
+		--fs-small: 12px;
+		--fs-regular: 14px;
+		--fs-header-mob: 24px;
+		--fs-header-desktop: 28px;
+		--fs-accent-big: 56px;
+		--fs-accent-medium: 32px;
+
+		--clr-button-off: hsl(230, 22%, 74%);
+		--clr-button-on: linear-gradient(to right, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+
+		--clr-green: hsl(163, 72%, 41%);
+		--clr-red: hsl(356, 69%, 56%);
+
+		--clr-facebook: hsl(208, 92%, 53%);
+		--clr-twitter: hsl(203, 89%, 53%);
+		--clr-instagram: linear-gradient(to right, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
+		--clr-youtube: hsl(348, 97%, 39%);
+	}
+
+	/* ------ RESET ------ */
+
+	/* 1. Use a more-intuitive box-sizing model. */
+	*, *::before, *::after {
+		box-sizing: border-box;
+	}
+	/* 2. Remove default margin */
+	* {
+		margin: 0;
+	}
+	/* 3. Allow percentage-based heights in the application */
+	html, body {
+		height: 100%;
+	}
+	/* Typographic tweaks! 4. Add accessible line-height 5. Improve text rendering */
+	body {
+		line-height: 1.21;
+		-webkit-font-smoothing: antialiased;
+	}
+	/* 6. Improve media defaults */
+	img, picture, video, canvas, svg {
+		display: block;
+		max-width: 100%;
+	}
+	/* 7. Remove built-in form typography styles */
+	input, button, textarea, select {
+		font: inherit;
+	}
+	/* 8. Avoid text overflows */
+	p, h1, h2, h3, h4, h5, h6 {
+		overflow-wrap: break-word;
+	}
+	/* 9. Create a root stacking context */
+	#root, #__next {
+		isolation: isolate;
+	}
+
+	/* ------ GLOBAL STYLES ------ */
+	
+	.dark {
+		--clr-bg: hsl(230, 17%, 14%);
+		--clr-hero-bg: hsl(232, 19%, 15%);
+		--clr-card-bg: hsl(228, 28%, 20%);
+		--clr-line: hsl(228, 25%, 27%);
+		--clr-text: hsl(228, 34%, 66%);
+		--clr-headers: hsl(0, 0%, 100%);
+
+		--clr-hover: hsl(228, 25%, 27%);
+	}
+
+	body {
+		font-family: var(--ff-regular);
+		font-size: var(--fs-regular);
+		font-weight: var(--fw-bold);
+		color: var(--clr-text);
+		background: var(--clr-bg);
+
+		--clr-bg: hsl(0, 0%, 100%);
+		--clr-hero-bg: hsl(225, 100%, 98%);
+		--clr-card-bg: hsl(227, 47%, 96%);
+		--clr-line: hsl(230, 19%, 60%);
+		--clr-text: hsl(228, 12%, 44%);
+		--clr-headers: hsl(230, 17%, 14%);
+
+		--clr-hover: hsl(228, 33%, 91%);
+
+		transition: color 0.3s, background 0.3s;
+
+		*, *::before, *::after {
+			transition: color 0.3s, background 0.3s;
+		}
+	}
+
+</style>

@@ -1,0 +1,76 @@
+---
+import BigCard from './BigCard.astro';
+import Container from './Container.astro';
+
+import iconFb from '../assets/icon-facebook.svg';
+import iconTw from '../assets/icon-twitter.svg';
+import iconIg from '../assets/icon-instagram.svg';
+import iconYt from '../assets/icon-youtube.svg';
+
+const bigCardsData = [
+  {
+    socialIcon: iconFb,
+    socialName: 'facebook',
+    username: '@nathanf',
+    followersCount: '1987',
+    followersName: 'followers',
+    followersDifference: 12
+  },
+  {
+    socialIcon: iconTw,
+    socialName: 'twitter',
+    username: '@nathanf',
+    followersCount: '1044',
+    followersName: 'followers',
+    followersDifference: 99
+  },
+  {
+    socialIcon: iconIg,
+    socialName: 'instagram',
+    username: '@realnathanf',
+    followersCount: '11k',
+    followersName: 'followers',
+    followersDifference: 1099
+  },
+  {
+    socialIcon: iconYt,
+    socialName: 'youtube',
+    username: 'Nathan F.',
+    followersCount: '8239',
+    followersName: 'subscribers',
+    followersDifference: -144
+  }
+];
+
+---
+
+<section class="bigCardsList">
+  <Container>
+    <div class="bigCardsList__list">
+      {bigCardsData.map(card => (
+        <BigCard 
+          socialIcon={card.socialIcon} 
+          socialName={card.socialName}
+          username={card.username} 
+          followersCount={card.followersCount}
+          followersName={card.followersName}
+          followersDifference={card.followersDifference}
+        />
+      ))}
+    </div>
+  </Container>
+</section>
+
+<style lang="scss">
+  .bigCardsList__list {
+    display: grid;
+    gap: 24px;
+    margin-bottom: 46px;
+
+    @media (min-width: 600px) {
+      justify-content: center;
+      grid-template-columns: repeat(auto-fit, 255px);
+      gap: 30px;
+    }
+  }
+</style>

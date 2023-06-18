@@ -1,0 +1,101 @@
+---
+interface Props {
+  socialIcon: string;
+  socialName: string;
+  username: string;
+  followersCount: string;
+  followersName: string;
+  followersDifference: number;
+}
+
+import iconUp from '../assets/icon-up.svg';
+import iconDown from '../assets/icon-down.svg';
+
+const {socialIcon, socialName, username, followersCount, followersName, followersDifference} = Astro.props;
+---
+
+<div class={`bigCard ${socialName}`}>
+  <div class="bigCard__user">
+    <img src={socialIcon} alt="socials icon">
+    <p>{username}</p>
+  </div>
+  <div class="bigCard__followers">
+    <p class="bigCard__followersCount">{followersCount}</p>
+    <p class="bigCard__followersName">{followersName}</p>
+    <div class={`bigCard__followersDifference ${followersDifference > 0 ? '' : 'bigCard__followersDifference-down'}`}>
+      <img src={followersDifference > 0 ? iconUp : iconDown} alt="diff icon">
+      <p>{Math.abs(followersDifference)} Today</p>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .bigCard {
+    background-color: var(--clr-card-bg);
+    border-radius: 5px;
+    padding: 32px 0 24px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: var(--clr-hover);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: red;
+    }
+
+    &.facebook::after {background: var(--clr-facebook)}
+    &.twitter::after {background: var(--clr-twitter)}
+    &.instagram::after {background: var(--clr-instagram)}
+    &.youtube::after {background: var(--clr-youtube)}
+
+    &__user {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+      font-size: var(--fs-small);
+    }
+
+    &__followers {
+      &Count {
+        color: var(--clr-headers);
+        letter-spacing: -2px;
+        font-size: var(--fs-accent-big);
+        line-height: 48px;
+        margin-bottom: 9px;
+      }
+
+      &Name {
+        font-size: var(--fs-small);
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        font-weight: var(--fw-regular);
+        margin-bottom: 25px;
+      }
+
+      &Difference {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        color: var(--clr-green);
+        
+        &-down {
+          color: var(--clr-red);
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,70 @@
+---
+interface Props {
+  title: string;
+  socialIcon: string;
+  value: string;
+  socialsDifference: number; 
+}
+
+import iconUp from '../assets/icon-up.svg';
+import iconDown from '../assets/icon-down.svg';
+
+const {title, socialIcon, value, socialsDifference} = Astro.props;
+---
+
+<div class="smallCard">
+  <div class="smallCard__row">
+    <p class="smallCard__title">{title}</p>
+    <img src={socialIcon} alt="socials icon">
+  </div>
+  <div class="smallCard__row">
+    <p class="smallCard__value">{value}</p>
+    <div class={`smallCard__socialsDifference ${socialsDifference > 0 ? '' : 'smallCard__socialsDifference-down'}`}>
+      <img src={socialsDifference > 0 ? iconUp : iconDown} alt="diff icon">
+      <p>{Math.abs(socialsDifference)}%</p>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .smallCard {
+    padding: 26px 30px 19px 24px;
+    background: var(--clr-card-bg);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: var(--clr-hover);
+    }
+
+    &__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 21px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__value {
+      color: var(--clr-headers);
+      font-size: var(--fs-accent-medium);
+    }
+
+    &__socialsDifference {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-size: var(--fs-small);
+      margin-top: 7px;
+      color: var(--clr-green);
+        
+        &-down {
+          color: var(--clr-red);
+        }
+    }
+  }
+</style>

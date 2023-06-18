@@ -1,0 +1,125 @@
+---
+import Container from './Container.astro';
+---
+
+<section class="hero">
+  <Container>
+    <div class="hero__content">
+      <div class="hero__text">
+        <h1 class="hero__title"> Social Media Dashboard </h1>
+        <p class="hero__caption"> Total Followers: 23,004 </p>
+      </div>
+      <div class="hero__switchContainer">
+        <p class="hero__btnLabel">Dark Mode</p>
+        <button class="hero__btn"></button>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style lang="scss">
+
+  .hero {
+    padding-top: 36px;
+    margin-bottom: 40px;
+    position: relative;
+
+    @media (min-width: 600px) {
+      margin-bottom: 46px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 235px;
+      border-radius: 0 0 20px 20px;
+      background: var(--clr-hero-bg);
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    &__text {
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--clr-line);
+
+      @media (min-width: 600px) {
+        border: none;
+        padding-bottom: 0;
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      @media (min-width: 600px) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    &__title {
+      font-size: var(--fs-header-mob);
+      margin-bottom: 4px;
+      color: var(--clr-headers);
+
+      @media (min-width: 600px) {
+        font-size: var(--fs-header-desktop);
+      }
+    }
+
+    &__switchContainer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @media (min-width: 600px) {
+        gap: 13px;
+      }
+    }
+
+    &__btn {
+      height: 24px;
+      width: 48px;
+      border-radius: 12px;
+      background: var(--clr-button-off);
+      border: none;
+      position: relative;
+      cursor: pointer;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 3px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        background-color: var(--clr-hover);
+        border-radius: 50%;
+        transition: left 0.3s;
+      }
+
+      &.active {
+        background: var(--clr-button-on);
+
+        &::after {
+          left: 27px;
+        }
+      }
+    }
+  }
+
+</style>
+
+<script>
+  const button = document.querySelector('.hero__btn');
+  const body = document.body;
+  button?.addEventListener('click', function() {  
+    button.classList.toggle('active');
+    body.classList.toggle('dark');
+  });
+</script>
